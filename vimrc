@@ -1,7 +1,7 @@
 set nocompatible
 filetype off
 
-" install: 
+" install:
 " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 " vim_run:
 " :PluginInstall
@@ -27,8 +27,7 @@ Plugin 'jamessan/vim-gnupg'
 
 set encoding=utf-8
 
-" Podświetlanie składni i numerowanie wierszy - mam nadzieję, że nikt nie
-" będzie musiał tego dopisywać u siebie. :D
+" Syntax highlighting, numering, F2 toggle numering
 syntax on
 set number
 nnoremap <F2> :set nonumber!<CR>
@@ -36,42 +35,33 @@ nnoremap <F2> :set nonumber!<CR>
 " Disable auto comment insertions
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" Tab jako 4 spacje
+" Use space when Tab
 set expandtab
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
 set autoindent
 
-" 2 spacje dla yaml
+" yaml fix 2 space not 4
 autocmd Filetype yml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd Filetype yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
-" Wyświetlanie zbędnych białych znaków - według mnie must-have
-" Przy tych ustawieniach Vim będzie podświetlał tylko zbędne białe znaki
-" na końcu linii oraz białe znaki w pustych wierszach.
-" Symbole można zamienić na dowolne, ale najlepiej sprawdzą się jakieś
-" niestandardowe z Unicode.
+" show whitespaces at end
 set list
 set listchars=trail:⋅,nbsp:⋅,tab:▷⋅
 
-" Ustawienia wyszukiwania - inteligentne wykrywanie wielkości liter,
-"  podświetlanie wyników, szukanie w trakcie pisania
+" search improve
 set ignorecase smartcase
 set hlsearch
 set incsearch
 
-" Podświetlenie aktywnej linijki (kolor można sobie dobrać)
-"highlight CursorLine cterm=NONE ctermbg=gray guibg=gray8
+" highlight CursorLine cterm=NONE ctermbg=gray guibg=gray8
 "set cursorline
 
-" Python zachęca do trzymania się wersów o długości do 80 kolumn
-" Zamiast podświetlenia wszystkich pustych znaków na 80 kolumnie,
-"      podświetl znak dopiero po przekroczeniu tego limitu.
-"      highlight ColorColumn guibg=gray2
+" Python show more than 80 chars in line
 "call matchadd('ColorColumn', '\%81v', 100)
 
-" j/k będą przechodzić przez zawijane linie tekstu.
+" j/k move up/down
 nnoremap j gj
 nnoremap k gk
 
