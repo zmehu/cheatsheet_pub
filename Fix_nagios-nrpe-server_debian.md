@@ -1,12 +1,12 @@
 # Debian 9 stretch has problem with systemd and nagios-nrpe-server package 3.2.x
 
-# error
+### error
 sty 11 09:53:03 localhost systemd[1]: nagios-nrpe-server.service: Main process exited, code=exited, status=127/n/a
 sty 11 09:53:03 localhost systemd[1]: nagios-nrpe-server.service: Control process exited, code=exited status=127
 sty 11 09:53:03 localhost systemd[1]: nagios-nrpe-server.service: Unit entered failed state.
 sty 11 09:53:03 localhost systemd[1]: nagios-nrpe-server.service: Failed with result 'exit-code'.
 
-# You should have nice start script in /etc/init.d/nagios-nrpe-server, just remove all systemd files
+### You should have nice start script in /etc/init.d/nagios-nrpe-server, just remove all systemd files
 systemctl stop nagios-nrpe-server
 systemctl disable nagios-nrpe-server
 rm /lib/systemd/system/nagios-nrpe-server.service
@@ -14,12 +14,12 @@ systemctl reload-deamon
 systemctl reset-failed
 
 systemctl -a | grep nrpe
-# should be empty, no nagios-nrpe-server serivce defined in systemd
-# and now Y can use start script /etc/init.d/nagios-nrpe-server
+#### should be empty, no nagios-nrpe-server serivce defined in systemd
+#### and now Y can use start script /etc/init.d/nagios-nrpe-server
 /etc/init.d/nagios-nrpe-server stop
 /etc/init.d/nagios-nrpe-server start
 
-# /etc/init.d/nagios-nrpe-server
+### /etc/init.d/nagios-nrpe-server
 ```sh
 #! /bin/sh
 #
