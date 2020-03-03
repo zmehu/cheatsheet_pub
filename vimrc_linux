@@ -1,10 +1,7 @@
 set nocompatible
 filetype off
 
-" install:
-" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-" vim_run:
-" :PluginInstall
+" install: git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -27,7 +24,7 @@ Plugin 'jamessan/vim-gnupg'
 
 set encoding=utf-8
 
-" Syntax highlighting, numering, F2 toggle numering
+" Podswietlanie skladni i numerowanie wierszy
 syntax on
 set number
 nnoremap <F2> :set nonumber!<CR>
@@ -35,37 +32,36 @@ nnoremap <F2> :set nonumber!<CR>
 " Disable auto comment insertions
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" Use space when Tab
+" Tab jako 4 spacje
 set expandtab
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
 set autoindent
 
-" yaml fix 2 space not 4
+" 2 spacje dla yaml
 autocmd Filetype yml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd Filetype yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
-" show whitespaces at end
+" Wyswietlanie zbednych bialych znakow - wedlug mnie must-have
 set list
-set listchars=trail:⋅,nbsp:⋅,tab:▷⋅
 
-" search improve
+" Ustawienia wyszukiwania - inteligentne wykrywanie wielkosci liter,
+"  podswietlanie wynikow, szukanie w trakcie pisania
 set ignorecase smartcase
 set hlsearch
 set incsearch
 
-" highlight CursorLine cterm=NONE ctermbg=gray guibg=gray8
+" Podswietlenie aktywnej linijki
+"highlight CursorLine cterm=NONE ctermbg=gray guibg=gray8
 "set cursorline
 
-" Python show more than 80 chars in line
+" Python 80 chars col
 "call matchadd('ColorColumn', '\%81v', 100)
 
-" j/k move up/down
+" j/k move
 nnoremap j gj
 nnoremap k gk
 
 " disable mouse automatic visual mode
 set mouse-=a
-
-

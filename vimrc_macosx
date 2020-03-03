@@ -1,0 +1,67 @@
+set nocompatible
+filetype off
+
+" install: git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+
+call vundle#end()
+filetype plugin indent on
+
+Plugin 'scrooloose/syntastic'
+let g:syntastic_python_checkers = ['pylint']
+
+Plugin 'davidhalter/jedi-vim'
+autocmd FileType python setlocal completeopt-=preview
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+
+"gnupg
+Plugin 'jamessan/vim-gnupg'
+
+set encoding=utf-8
+
+" Podswietlanie skladni i numerowanie wierszy
+syntax on
+set number
+nnoremap <F2> :set nonumber!<CR>
+
+" Disable auto comment insertions
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" Tab jako 4 spacje
+set expandtab
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set autoindent
+
+" 2 spacje dla yaml
+autocmd Filetype yml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+autocmd Filetype yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+
+" Show whitespace at end - według mnie must-have
+set list
+set listchars=trail:⋅,nbsp:⋅,tab:▷⋅
+
+" search settings
+set ignorecase smartcase
+set hlsearch
+set incsearch
+
+" highlight active line
+"highlight CursorLine cterm=NONE ctermbg=gray guibg=gray8
+"set cursorline
+
+" Python char lenght 80 col
+"call matchadd('ColorColumn', '\%81v', 100)
+
+" j/k move
+nnoremap j gj
+nnoremap k gk
+
+" disable mouse automatic visual mode
+set mouse-=a
