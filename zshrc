@@ -93,5 +93,4 @@ export EDITOR=vim
 # aliases
 alias s='ssh'
 alias lla='ls -lah'
-alias ssh-add-keys='cat ~/.ssh/config | grep IdentityFile | awk '{print $NF}' | sort | uniq | xargs ssh-add'
 
