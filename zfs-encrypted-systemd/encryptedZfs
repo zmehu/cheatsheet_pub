@@ -1,0 +1,49 @@
+#!/bin/bash
+# Zfs encrypted init script for systemd
+
+function opendisk {
+DSK=$1
+K=$2
+echo "LUKS open $DSK"
+echo $K | cryptsetup luksOpen /dev/disk/by-uuid/$DSK $DSK -
+}
+
+function closedisk {
+DSK=$1
+if [[ `readlink /dev/disk/by-uuid/${DSK}` ]]; then
+        echo "LUKS close $DSK"
+        cryptsetup close /dev/mapper/$DSK
+fi
+}
+
+ACTION="$1"
+POOLNAME="$2"
+ARG_LIST=($@)
+KEY=""
+
+if [[ "${ACTION}" == "start" ]]; then
+        #read -s -p "Entry luks decryption key: " KEY
+        KEY=$(systemd-ask-password "Entry luks decryption key: ")
+        echo ""
+fi
+
+#if [[ $1 == "start" ]]; then
+#/sbin/modprobe zfs #not needed when zfs root
+#fi
+
+if [[ "${ACTION}" == "stop" ]]; then
+zpool export -f $POOLNAME
+
+fi
+
+for D in "${ARG_LIST[@]:2}"
+do
+    [[ $ACTION == "start" ]] && opendisk $D $KEY
+    [[ $ACTION == "stop" ]] && closedisk $D
+done
+
+if [[ "${ACTION}" == "start" ]]; then
+zpool import -f $POOLNAME
+
+fi
+
