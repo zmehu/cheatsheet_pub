@@ -1,7 +1,10 @@
 
 # Create systemd service to mount zfs encrypted
 
-Use systemd service to open luks disk and import zfs pool
+Use systemd service to open luks disk and import zfs pool. This service is using 
+systemd-ask-password to provide luks password, thats reason why this service need 
+to be started manually. Last step is systemctl disable to avoid start on boot.
+Feel free to adjust script to use key from file to unecrypt disk. 
 
 File list:
 ```bash
@@ -44,4 +47,5 @@ cryptsetup luksClose sda_crypt
 systemctl enable zfs-encrypted
 systemctl start zfs-encrypted.service
 systemctl status zfs-encrypted.service
+systemctl disable zfs-encrypted.service
 ```
