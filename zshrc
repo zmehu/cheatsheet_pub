@@ -36,9 +36,11 @@ check-ssh-agent || eval "$(ssh-agent -s -a ${SSH_AUTH_SOCK})"
 
 #PROMPT="%n@%m"
 if [[ "$(uname 2> /dev/null)" == "Linux" ]]; then
-PROMPT="%{$fg_bold[green]%}%n@%m %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+        PROMPT_COLOR="green"
+        [[ "$(whoami)" == "root" ]] && PROMPT_COLOR="red"
+        PROMPT="%{$fg_bold[${PROMPT_COLOR}]%}%n@%m %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
 else
-PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+        PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
 fi
 
 PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
@@ -55,7 +57,7 @@ if [[ "$(uname 2> /dev/null)" == "Linux" ]]; then
 ### Linux ###
 # plugins
 plugins=(
-	git
+        git
 )
 
 ssh-agent-helper
@@ -65,8 +67,8 @@ else
 ### MAC OS ###
 # plugins
 plugins=(
-	git
-	brew
+        git
+        brew
     ssh-agent
 )
 
