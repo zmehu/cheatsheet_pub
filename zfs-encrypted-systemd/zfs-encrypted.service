@@ -10,7 +10,9 @@ Conflicts=shutdown.target umount.target
 Type=oneshot
 RemainAfterExit=yes
 ExecStart=/sbin/modprobe zfs
+ExecStart=/usr/sbin/encryptedZfsMountHelper clean
 ExecStart=/usr/sbin/encryptedZfs start POOL_NAME UUID_DISK_1 UUID_DISK2 UUID_DISK3
+ExecStart=/usr/sbin/encryptedZfsMountHelper finish
 ExecStop=/usr/sbin/encryptedZfs stop POOL_NAME UUID_DISK_1 UUID_DISK2 UUID_DISK3
 
 [Install]

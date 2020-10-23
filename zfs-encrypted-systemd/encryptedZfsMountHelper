@@ -1,0 +1,25 @@
+#!/bin/bash
+
+
+restart_services(){
+systemctl restart smbd
+systemctl restart rsyslog
+systemctl restart systemd-journald.service
+systemctl restart unattended-upgrades.service
+systemctl restart nmbd
+}
+
+if [[ "$1" == "clean" ]]; then
+	[[ -d /var/log2 ]] && rm -rf /var/log2
+	mv /var/log /var/log2
+	mkdir /var/log
+        chown root.syslog /var/log
+        chmod 775 /var/log
+	exit 0
+fi
+
+if [[ "$1" == "finish" ]]; then
+	restart_services
+	exit 0
+fi
+
