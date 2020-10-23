@@ -1,3 +1,4 @@
+#!/bin/zsh
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -35,7 +36,7 @@ check-ssh-agent || eval "$(ssh-agent -s -a ${SSH_AUTH_SOCK})"
 
 #PROMPT="%n@%m"
 if [[ "$(uname 2> /dev/null)" == "Linux" ]]; then
-PROMPT="%{$fg_bold[green]%}%n %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+PROMPT="%{$fg_bold[green]%}%n@%m %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
 else
 PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
 fi
